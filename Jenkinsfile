@@ -4,7 +4,7 @@
         triggers { cron ('H/15 * * * *') }
         parameters 
         {
-            string(name: 'MAVEN_GOAL',defaultValue: 'package')
+            choice(name: 'MAVEN_GOAL',choices: ['package','install','clean package'])
         }
 		stages
 		{
