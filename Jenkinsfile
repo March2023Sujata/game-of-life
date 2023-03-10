@@ -13,6 +13,7 @@
 			}
 			stage('package')
 			{
+                tools { jdk 'JDK_8' }
 				steps
 				{
 					sh 'mvn package'
