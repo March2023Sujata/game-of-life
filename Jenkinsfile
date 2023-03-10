@@ -2,6 +2,10 @@
 	{
 		agent { label 'MAVEN_JDK8'}
         triggers { cron ('H/15 * * * *') }
+        parameters 
+        {
+            string(name: 'MAVEN_GOAL',defaultValue: 'package')
+        }
 		stages
 		{
 			stage('vcs')
@@ -17,7 +21,7 @@
                 tools { jdk 'JDK_8' }
 				steps
 				{
-					sh 'mvn package'
+					sh "mvn ${params.MAVEN_GOAL}"
 				}
 			}
 			stage('post build')
