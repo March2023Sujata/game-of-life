@@ -36,11 +36,11 @@ pipeline{
                     cd Jenkins-Ansible-Gol/GOL_ROLE
                 '''
             }
+        }
         stage('Run-Role-Playbook'){
             steps{
                 sh 'ansible-playbook -i hosts gol.yml'
             }
-        }
-        }     
+        }    
     }
 }
