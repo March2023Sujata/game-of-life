@@ -2,22 +2,24 @@ pipeline{
     agent { label 'Ansible-node' } 
     stages{
         stage('VCS'){
-            tools { jdk 'Java_8' }
             steps{
                 sh '''
                 if [ -d "game-of-life" ] 
                 then
                     cd game-of-life
-                    git pull
-                    mvn package
+                    git pull   
                 else
                     git clone https://github.com/March2023Sujata/game-of-life.git
                     cd game-of-life
-                    mvn package
-                    cd ..
                 fi
                 '''         
             }
-        }          
+        } 
+        stage('Build package'){
+            tools { jdk 'Java_8' }
+            steps{
+                sh 'mvn package'
+            }
+        }        
     }
 }
