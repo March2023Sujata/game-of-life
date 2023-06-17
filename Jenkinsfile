@@ -27,13 +27,13 @@ pipeline{
         stage('Ansible-Playbook-Role'){
             steps{
                 sh '''
-                if [-d "Jenkins-Ansible-Gol"]
+                if [ -d "Jenkins-Ansible-Gol" ]
                 then
                     cd Jenkins-Ansible-Gol
                     git pull
                 else
                     git clone https://github.com/March2023Sujata/Jenkins-Ansible-Gol.git
-                    cd Jenkins-Ansible-Gol
+                    cd Jenkins-Ansible-Gol/GOL_ROLE
                 fi
                 '''
             }
