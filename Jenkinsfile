@@ -33,7 +33,7 @@ pipeline{
                     git pull
                 else
                     git clone https://github.com/March2023Sujata/Jenkins-Ansible-Gol.git
-                    cd Jenkins-Ansible-Gol/GOL_ROLE/
+                    cd Jenkins-Ansible-Gol/GOL_ROLE
                 fi
                 '''
             }
