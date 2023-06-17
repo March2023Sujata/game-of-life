@@ -38,7 +38,7 @@ pipeline{
             }
         stage('Run-Role-Playbook'){
             steps{
-                ansible-playbook -i hosts gol.yml
+                sh 'ansible-playbook -i hosts gol.yml'
             }
         }
         }     
