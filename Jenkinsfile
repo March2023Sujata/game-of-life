@@ -1,5 +1,8 @@
 pipeline{
     agent { label 'Ansible-node' } 
+    triggers {
+       pollSCM('*/30 * * * *')
+    }
     stages{
         stage('VCS'){
             steps{
@@ -12,7 +15,7 @@ pipeline{
                     git clone https://github.com/March2023Sujata/game-of-life.git
                     cd game-of-life
                 fi
-                '''         
+                '''
             }
         } 
         stage('Build package'){
@@ -20,6 +23,24 @@ pipeline{
             steps{
                 sh 'mvn package'
             }
-        }        
+        }   
+        stage('Ansible-Playbook-Role'){
+            steps{
+                sh '''
+                if [-d "Jenkins-Ansible-Gol"]
+                then
+                    cd Jenkins-Ansible-Gol
+                    git pull
+                else
+                    git clone https://github.com/March2023Sujata/Jenkins-Ansible-Gol.git
+                    cd Jenkins-Ansible-Gol/GOL_ROLE
+                '''
+            }
+        stage('Run-Role-Playbook'){
+            steps{
+                ansible-playbook -i hosts gol.yml
+            }
+        }
+        }     
     }
 }
