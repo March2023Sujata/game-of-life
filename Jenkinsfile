@@ -2,6 +2,7 @@ pipeline{
     agent { label 'Ansible-node' } 
     stages{
         stage('VCS'){
+            tools { jdk 'Java_8' }
             steps{
                 sh '''
                 if [ -d "game-of-life" ] 
