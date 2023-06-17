@@ -34,7 +34,7 @@ pipeline{
                     ansible-playbook -i hosts gol.yml
                 else
                     git clone https://github.com/March2023Sujata/Jenkins-Ansible-Gol.git
-                    cd Jenkins-Ansible-Gol`
+                    cd Jenkins-Ansible-Gol
                     ansible-playbook -i hosts gol.yml
                 fi
                 '''
